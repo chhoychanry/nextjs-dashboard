@@ -6,6 +6,7 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+  PostField,
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -216,3 +217,30 @@ export async function fetchFilteredCustomers(query: string) {
     throw new Error('Failed to fetch customer table.');
   }
 }
+
+export async function fetchPosts() {
+  try {
+    const posts = await sql<PostField[]>`
+      SELECT
+        id,
+        slug,
+        title,
+        excerpt,
+        content,
+        author,
+        tags,
+        coverImage,
+        createdAt,
+        published
+      FROM posts
+      ORDER BY createdAt DESC
+    `;
+
+    return posts;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all posts.');
+  }
+}
+
+
