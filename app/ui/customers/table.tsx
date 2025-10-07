@@ -5,12 +5,14 @@ import {
   CustomersTableType,
   FormattedCustomersTable,
 } from '@/app/lib/definitions';
+import { fetchFilteredCustomers } from '@/app/lib/data';
 
 export default async function CustomersTable({
-  customers,
+ query,
 }: {
-  customers: FormattedCustomersTable[];
+  query: string;
 }) {
+  const customers = await fetchFilteredCustomers(query);
   return (
     <div className="w-full">
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
@@ -38,7 +40,6 @@ export default async function CustomersTable({
                               width={28}
                               height={28}
                             />
-                            <p>{customer.name}</p>
                           </div>
                         </div>
                         <p className="text-sm text-gray-500">
@@ -66,8 +67,9 @@ export default async function CustomersTable({
                 <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                   <tr>
                     <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                      Name
+                      Image
                     </th>
+
                     <th scope="col" className="px-3 py-5 font-medium">
                       Email
                     </th>

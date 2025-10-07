@@ -144,4 +144,43 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
-export { users, customers, invoices, revenue };
+const posts = [
+  {
+    id: 1,
+    slug: "hello-nextjs",
+    title: "Hello Next.js",
+    excerpt: "Kickstarting a modern React app with the App Router.",
+    content: "Next.js gives you file-based routing, SSR, SSG, and more…",
+    author: "Ada Lovelace",
+    tags: ["nextjs", "react"],
+    coverImage: "/images/hello.png",
+    createdAt: "2025-10-07T08:15:00.000Z",
+    published: true
+  },
+  {
+    id: 2,
+    slug: "postgres-with-prisma",
+    title: "Postgres with Prisma",
+    excerpt: "How to wire Prisma to a Neon Postgres in minutes.",
+    content: "Install prisma, init schema, set DATABASE_URL, run migrate…",
+    author: "Grace Hopper",
+    tags: ["postgres", "prisma"],
+    coverImage: "/images/prisma.png",
+    createdAt: "2025-10-06T13:00:00.000Z",
+    published: true
+  },
+  {
+    id: 3,
+    slug: "tailwind-tips",
+    title: "Tailwind Tips",
+    excerpt: "Utility-first styling patterns for dashboards.",
+    content: "Use semantic groups, @apply for components, and variants…",
+    author: "Linus Torvalds",
+    tags: ["tailwind", "ui"],
+    coverImage: "/images/tailwind.png",
+    createdAt: "2025-10-05T09:30:00.000Z",
+    published: false
+  }
+]
+
+export { users, customers, invoices, revenue, posts };
