@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
-import { invoices, customers, revenue, users,posts } from '../lib/placeholder-data';
+import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -101,36 +101,36 @@ async function seedRevenue() {
   return insertedRevenue;
 }
 
-async function seedPosts() {
-  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+// async function seedPosts() {
+//   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
-  await sql`
-    CREATE TABLE IF NOT EXISTS posts (
-      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      slug VARCHAR(255) NOT NULL UNIQUE,
-      title VARCHAR(255) NOT NULL,
-      excerpt TEXT NOT NULL,
-      content TEXT NOT NULL,
-      author VARCHAR(255) NOT NULL,
-      tags TEXT[] NOT NULL,
-      coverImage VARCHAR(255) NOT NULL,
-      createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-      published BOOLEAN NOT NULL DEFAULT false
-    );
-  `;
+//   await sql`
+//     CREATE TABLE IF NOT EXISTS posts (
+//       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+//       slug VARCHAR(255) NOT NULL UNIQUE,
+//       title VARCHAR(255) NOT NULL,
+//       excerpt TEXT NOT NULL,
+//       content TEXT NOT NULL,
+//       author VARCHAR(255) NOT NULL,
+//       tags TEXT[] NOT NULL,
+//       coverImage VARCHAR(255) NOT NULL,
+//       createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+//       published BOOLEAN NOT NULL DEFAULT false
+//     );
+//   `;
 
-  const insertedPosts = await Promise.all(
-    posts.map(
-      (post) => sql`
-        INSERT INTO posts (id, slug, title, excerpt, content, author, tags, coverImage, createdAt, published)
-        VALUES (${post.id}, ${post.slug}, ${post.title}, ${post.excerpt}, ${post.content}, ${post.author}, ${post.tags}, ${post.coverImage}, ${post.createdAt}, ${post.published})
-        ON CONFLICT (id) DO NOTHING;
-      `,
-    ),
-  );
+//   const insertedPosts = await Promise.all(
+//     posts.map(
+//       (post) => sql`
+//         INSERT INTO posts (id, slug, title, excerpt, content, author, tags, coverImage, createdAt, published)
+//         VALUES (${post.id}, ${post.slug}, ${post.title}, ${post.excerpt}, ${post.content}, ${post.author}, ${post.tags}, ${post.coverImage}, ${post.createdAt}, ${post.published})
+//         ON CONFLICT (id) DO NOTHING;
+//       `,
+//     ),
+//   );
 
-  return insertedPosts;
-  }
+//   return insertedPosts;
+//   }
 
 export async function GET() {
   try {
@@ -139,7 +139,7 @@ export async function GET() {
       seedCustomers(),
       seedInvoices(),
       seedRevenue(),
-      seedPosts(),
+      // seedPosts(),
     ]);
 
     return Response.json({ message: 'Database seeded successfully' });
