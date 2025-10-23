@@ -220,10 +220,11 @@ export async function fetchFilteredCustomers(query: string) {
 
 export async function fetchAuthors() {
   try {
-    const authors = await sql<{ id: number; name: string }[]>`
+    const authors = await sql<AuthorTable[]>`
       SELECT
         id,
-        name
+        name,
+        description
       FROM authors
       ORDER BY name ASC
     `;
