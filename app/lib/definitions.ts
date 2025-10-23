@@ -87,27 +87,8 @@ export type InvoiceForm = {
   status: 'pending' | 'paid';
 };
 
-export type Post = {
+export type Author = {
   id: number;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  tags: string[];
-  coverImage?: string;
-  createdAt: string;   // ISO
-  published: boolean;
-};
-export type PostField = {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  tags: string[];
-  coverImage?: string;
-  createdAt: string;   // ISO
-  published: boolean;
+  name: string;
+  description: string;
 };

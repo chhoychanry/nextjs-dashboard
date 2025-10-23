@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
-import { invoices, customers, revenue, users } from '../lib/placeholder-data';
+import { invoices, customers, revenue, users,authors } from '../lib/placeholder-data';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -102,6 +102,31 @@ async function seedRevenue() {
 }
 
 
+async function seedAuthors() {
+  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS authors (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      description TEXT,
+    );
+  `;
+
+  const insertedAuthors = await Promise.all(
+    authors.map(async (author) => {
+      return sql`
+        INSERT INTO users (id, name, description)
+        VALUES (${author.id}, ${author.name}, ${author.description})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    }),
+  );
+
+  return insertedAuthors;
+}
+
+
+
 
 export async function GET() {
   try {
@@ -110,6 +135,7 @@ export async function GET() {
       seedCustomers(),
       seedInvoices(),
       seedRevenue(),
+      seedAuthors(),
     ]);
 
     return Response.json({ message: 'Database seeded successfully' });

@@ -6,7 +6,6 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
-  PostField,
 } from './definitions';
 import { formatCurrency } from './utils';
 

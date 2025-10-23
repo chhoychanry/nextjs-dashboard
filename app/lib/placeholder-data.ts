@@ -143,6 +143,12 @@ const revenue = [
   { month: 'Nov', revenue: 3000 },
   { month: 'Dec', revenue: 4800 },
 ];
+const authors = [
+  {
+    id: '410544b2-4001-4271-9855-fec4b6a6442a',
+    name: 'Test User',
+    description: 'This is a test user',
+  },
+];
 
-
-export { users, customers, invoices, revenue };
+export { users, customers, invoices, revenue, authors };
