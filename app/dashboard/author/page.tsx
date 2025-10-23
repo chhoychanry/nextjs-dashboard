@@ -8,5 +8,6 @@ export const metadata: Metadata = {
 export default function page() {
   return (
   // <TableAuthor />
+    <div>Author</div>
   )
 }
