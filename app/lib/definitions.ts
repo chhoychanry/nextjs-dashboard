@@ -92,7 +92,7 @@ export type Author = {
   name: string;
   description: string;
 };
-export type AuthorTable = {
+export type AuthorTableType = {
   id: string;
   name: string;
   description: string;

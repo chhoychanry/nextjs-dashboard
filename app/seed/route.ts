@@ -66,7 +66,6 @@ async function seedCustomers() {
       image_url VARCHAR(255) NOT NULL
     );
   `;
-
   const insertedCustomers = await Promise.all(
     customers.map(
       (customer) => sql`
@@ -111,7 +110,6 @@ async function seedAuthors() {
       description TEXT NOT NULL
     );
   `;
-
   const insertedAuthors = await Promise.all(
     authors.map(async (author) => {
       return sql`
@@ -121,7 +119,6 @@ async function seedAuthors() {
       `;
     }),
   );
-
   return insertedAuthors;
 }
 
@@ -137,7 +134,6 @@ export async function GET() {
       seedRevenue(),
       seedAuthors(),
     ]);
-
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
     return Response.json({ error }, { status: 500 });
