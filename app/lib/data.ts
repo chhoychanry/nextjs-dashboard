@@ -218,22 +218,22 @@ export async function fetchFilteredCustomers(query: string) {
   }
 }
 
-export async function fetchAuthors() {
-  try {
-    const authors = await sql<AuthorTable[]>`
-      SELECT
-        id,
-        name,
-        description
-      FROM authors
-      ORDER BY name ASC
-    `;
-    return authors;
-  } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch all authors.');
-  }
-}
+// export async function fetchAuthors() {
+//   try {
+//     const authors = await sql<AuthorTable[]>`
+//       SELECT
+//         id,
+//         name,
+//         description
+//       FROM authors
+//       ORDER BY name ASC
+//     `;
+//     return authors;
+//   } catch (err) {
+//     console.error('Database Error:', err);
+//     throw new Error('Failed to fetch all authors.');
+//   }
+// }
 
 
 

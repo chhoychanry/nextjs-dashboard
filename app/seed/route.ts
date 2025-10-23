@@ -108,7 +108,7 @@ async function seedAuthors() {
     CREATE TABLE IF NOT EXISTS authors (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      description TEXT​ NOT NULL
+      description TEXT NOT NULL
     );
   `;
 
