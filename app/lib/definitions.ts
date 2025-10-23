@@ -92,3 +92,8 @@ export type Author = {
   name: string;
   description: string;
 };
+export type AuthorTable = {
+  id: string;
+  name: string;
+  description: string;
+};

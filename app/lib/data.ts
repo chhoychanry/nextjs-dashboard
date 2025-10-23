@@ -6,6 +6,7 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+  AuthorTable
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -217,6 +218,21 @@ export async function fetchFilteredCustomers(query: string) {
   }
 }
 
+export async function fetchAuthors() {
+  try {
+    const authors = await sql<{ id: number; name: string }[]>`
+      SELECT
+        id,
+        name
+      FROM authors
+      ORDER BY name ASC
+    `;
+    return authors;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all authors.');
+  }
+}
 
 
 
