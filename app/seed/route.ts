@@ -115,7 +115,7 @@ async function seedAuthors() {
   const insertedAuthors = await Promise.all(
     authors.map(async (author) => {
       return sql`
-        INSERT INTO users (id, name, description)
+        INSERT INTO authors (id, name, description)
         VALUES (${author.id}, ${author.name}, ${author.description})
         ON CONFLICT (id) DO NOTHING;
       `;
